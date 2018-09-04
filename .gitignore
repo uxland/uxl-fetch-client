@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+dist/
+src/**/*.js
+src/**/*.js.map
+test/**/*.js
+test/**/*.js.map
+mochawesome-report/
+package-lock.json
