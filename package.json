@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@polymer/polymer": "^3.0.5",
-    "@uxland/uxl-event-aggregator": "^1.0.0",
+    "@uxland/uxl-event-aggregator": "^2.0.0",
     "whatwg-fetch": "^2.0.4"
   },
   "scripts": {
