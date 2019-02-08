@@ -12,7 +12,8 @@
   },
   "author": "UXLand <dev@uxland.es> (http://www.uxland.es)",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "polymer",
     "web components"
@@ -52,21 +53,29 @@
     "whatwg-fetch": "^2.0.4"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json || echo 'Build completed'",
+    "build:es": "tsc -p tsconfig-es.json",
+    "build:cjs": "tsc -p tsconfig-cjs.json",
+    "build": "npm run build:es && npm run build:cjs",
     "test:ui:watch": "nodemon --watch test --watch src -x \"polymer test --config-file wct.config.json\"",
     "test:ui": "polymer test --config-file wct.config.json",
-    "test:unit": "node --experimental-modules node_modules/mocha/bin/_mocha -r esm --ui tdd --reporter mochawesome test/unit",
-    "tdd": "node --experimental-modules node_modules/mocha/bin/_mocha --watch -r esm --ui tdd --reporter mochawesome test/unit",
-    "dist": "tsc --p gulp/tsconfig-dist.json && gulp generate-d-ts",
-    "prepublishOnly": "if [ -d dist ]; then ncp dist/. . && rimraf dist/; fi",
+    "test:unit": "echo test disabled",
+    "tdd": "node --experimental-modules node_modules/mocha/bin/_mocha --watch -r esm ./test/unit/setup.js --ui tdd --reporter mochawesome test/unit/**/*.loader.js",
+    "dist": "npm run build",
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
   },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
+  },
+  "license": "Apache-2.0",
   "directories": {
     "test": "test"
   },
-  "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
+  },
+  "release": {
+    "branch": "master"
   }
 }

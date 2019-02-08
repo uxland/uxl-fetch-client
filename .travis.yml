@@ -12,16 +12,16 @@ addons:
 before_script:
   - npm i -g polymer-cli
 script:
-  - npm run build
-  - xvfb-run npm run test:ui
-  # - npm run test:unit
+  - npm run test:unit
 after_success:
-  - gulp dist
+  - npm run dist
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
 deploy:
   provider: script
+  on:
+    branch: master
   skip_cleanup: true
   script:
-    - npx semantic-release
+    - npx semantic-release --branch master

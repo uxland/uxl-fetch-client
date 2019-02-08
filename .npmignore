@@ -1,4 +1,8 @@
+src/
 test/
+dev/
 mochawesome-report/
 polymer.json
 tsconfig.json
+tsconfig-cjs.json
+tsconfig-es.json
