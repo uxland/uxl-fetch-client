@@ -23,6 +23,9 @@ export interface IFetchClient{
 }
 export type ResponseHandler = <T>(response) => T;
 
+const HEADER_CONTENT_TYPE = 'Content-Type';
+const CONTENT_TYPE_JSON = 'application/json';
+
 const SAP_CLIENT_PARAM = 'sap-client';
 
 const ABSOLUTE_URL_REGEX = /^([a-z][a-z0-9+\-.]*:)?\/\//i;
@@ -36,7 +39,7 @@ export const INVALID_REQUEST_EVENT = "UXL-CLIENT:INVALID_REQUEST_EVENT";
 
 const configuration: Configuration = {
     headers: {
-        'Content-Type': 'application/json'
+        HEADER_CONTENT_TYPE: CONTENT_TYPE_JSON
     },
     credentials: 'include',
     mode: 'cors'
@@ -86,6 +89,10 @@ const isResetCredentialsResponse = (r: any) => {
     let code = getCode(r);
     return code && code == 402;
 };
+const isResponseContentTypeJSON = (response : Response):boolean => {
+    const contentType = response.headers.get(HEADER_CONTENT_TYPE);
+    return contentType && contentType.indexOf(CONTENT_TYPE_JSON) !== -1;
+} 
 
 const getError = (r: any): InvalidRequestPayload =>{
     return {status: getCode(r), statusText: r.text || r.TEXT};
@@ -109,10 +116,14 @@ const defaultResponseHandler = <T>(result: T) =>{
     return result;
 };
 
-export const handleResponse = <T>(response: Response): Promise<T> =>{
-    return response.json()
-        .then( r => responseHandlers.reduce((previousValue, currentValue) => currentValue(previousValue), r));
+export const handleResponse = <T>(response: Response): Promise<T> => {
+  return isResponseContentTypeJSON(response)
+    ? response
+        .json()
+        .then(r => responseHandlers.reduce((previousValue, currentValue) => currentValue(previousValue), r))
+    : response.text();
 };
+
 export const handleErrors = async(response: Response) => {
     if (!response.ok) {
         let error;
