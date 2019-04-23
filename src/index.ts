@@ -39,7 +39,7 @@ export const INVALID_REQUEST_EVENT = "UXL-CLIENT:INVALID_REQUEST_EVENT";
 
 const configuration: Configuration = {
     headers: {
-        HEADER_CONTENT_TYPE: CONTENT_TYPE_JSON
+        'Content-Type': CONTENT_TYPE_JSON
     },
     credentials: 'include',
     mode: 'cors'
