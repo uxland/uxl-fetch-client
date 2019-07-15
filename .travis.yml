@@ -7,11 +7,9 @@ sudo: required
 notifications:
   email: false
 node_js: 10
-addons:
-  chrome: stable
-before_script:
-  - npm i -g polymer-cli
 script:
+  # - xvfb-run npm run test:ui
+  # - npm run test:unit
   - npm run test:unit
 after_success:
   - npm run dist
@@ -20,8 +18,6 @@ branches:
     - /^v\d+\.\d+\.\d+$/
 deploy:
   provider: script
-  on:
-    branch: master
   skip_cleanup: true
   script:
-    - npx semantic-release --branch master
+    - npx semantic-release

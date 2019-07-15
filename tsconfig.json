@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "target": "es6",
+    "target": "esnext",
+    "module": "commonjs",
     "rootDir": ".",
-    "outDir": "./dev",
-    "sourceMap": true,
-    "declaration": true,
+    "allowJs": true,
+    "noEmit": true,
     "noImplicitAny": false,
     "removeComments": true,
     "esModuleInterop": true,
@@ -27,7 +26,8 @@
   },
   "include": [
     "src/**/*",
-    "test/**/*"
+    "test/**/*",
+    "demo/**/*"
   ],
   "exclude": [
     "node_modules",

@@ -1,8 +1,12 @@
-src/
 test/
-dev/
+src/
 mochawesome-report/
 polymer.json
 tsconfig.json
-tsconfig-cjs.json
-tsconfig-es.json
+wct.config.json
+node_modules/
+README.md
+demo/
+gulpfile.js
+.travis.yml
+polymer.json
