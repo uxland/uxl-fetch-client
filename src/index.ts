@@ -133,7 +133,6 @@ export const handleErrors = async (response: Response) => {
       error = Object.assign(new Error(), { status: response.status, statusText: response.statusText });
     }
 
-    // TODO: find microTask.run alternative for lit-element
     if (response.status === 401) {
       await microTask();
       publish(INVALID_CREDENTIALS_EVENT, error);
