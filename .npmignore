@@ -1,12 +1,9 @@
 test/
 src/
-mochawesome-report/
-polymer.json
 tsconfig.json
-wct.config.json
+tsconfig.build.json
 node_modules/
 README.md
 demo/
-gulpfile.js
 .travis.yml
-polymer.json
+coverage/
