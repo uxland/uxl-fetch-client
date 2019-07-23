@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "module": "esnext",
     "target": "esnext",
-    "rootDir": "./src",
-    "outDir": ".",
-    "sourceMap": true,
-    "declaration": true,
+    "module": "esnext",
+    "rootDir": "src",
+    "allowJs": false,
     "noImplicitAny": false,
     "removeComments": true,
     "esModuleInterop": true,
@@ -26,7 +24,7 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
   ],
   "exclude": [
     "node_modules",
