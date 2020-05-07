@@ -1,4 +1,4 @@
-import { publish } from '@uxland/uxl-event-aggregator/lib/event-aggregator';
+import { publish } from '@uxland/uxl-event-aggregator';
 
 declare function serialize(key: string, value: string): string;
 export interface Configuration {
